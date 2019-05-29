@@ -18,6 +18,12 @@ var frames = [
   [10, 0], [2, 3], [4, 5], [6, 0], [1, 2], [10, 0], [10, 0], [9, 0], [8, 2], [10, 2, 0]
 ]
 
+
+
+
+
+
+
 let bowling = {
 
   result: 0,
@@ -25,6 +31,7 @@ let bowling = {
   check: {
 
     spare: function (frame) {
+      // return (bowling.add.score(frame) === 10 && frame[0] !== 10 ? true : false)
       if (bowling.add.score(frame) === 10 && frame[0] !== 10) {
         return true
       } else {
@@ -34,6 +41,7 @@ let bowling = {
 
 
     strike: function (frame) {
+      // return (frame[0] === 10 ? true : false)
       if (frame[0] === 10) {
         return true
       } else {
@@ -43,6 +51,7 @@ let bowling = {
 
 
     doubleStrike: function (frame, secondFrame) {
+      // return (frame[0] === 10 && secondFrame[0] === 10 ? true : false)
       if (frame[0] === 10 && secondFrame[0] === 10) {
         return true
       } else {
@@ -52,6 +61,7 @@ let bowling = {
 
 
     freeBall: function (frame) {
+      // return (frame.length === 3 ? true : false)
       if (frame.length === 3) {
         return true
       } else {
@@ -62,6 +72,14 @@ let bowling = {
   },
 
   add: {
+
+    sum: function(){
+        var total = 0;
+        for (var i=0; i < arguments.length; i++) {
+            total += arguments[i];
+        }
+        return total;
+    },
 
     score: function (frame) {
       return frame[0] + frame[1]
@@ -93,57 +111,47 @@ let bowling = {
       return frame[0] + frame[1] + frame[2]
     }
 
-  }
+  },
 
-}
+  score: function(game) {
 
-
-
-function score(game) {
-
-  // For each ball
-  for (let i = 0; i < game.length; i++) {
-
-    // Set frames
-    let frame = game[i]
-    let secondFrame = game[i + 1]
-    let thirdFrame = game[i + 2]
-
-    // Check for success
-    if (bowling.check.freeBall(frame)) {
-
-      bowling.result += bowling.add.freeBall(frame)
-
-    } else if (bowling.check.strike(frame)) {
-
-      bowling.result += bowling.add.strikeScore(frame, secondFrame, thirdFrame)
-
-    } else if (bowling.check.spare(frame)) {
-
-      bowling.result += bowling.add.spareScore(frame, secondFrame)
-
-    } else {
-
-      bowling.result += bowling.add.score(frame)
-
+    // For each ball
+    for (let i = 0; i < game.length; i++) {
+  
+      // Set frames
+      let frame = game[i]
+      let secondFrame = game[i + 1]
+      let thirdFrame = game[i + 2]
+  
+      // Check for success
+      if (bowling.check.freeBall(frame)) {
+  
+        bowling.result += bowling.add.freeBall(frame)
+  
+      } else if (bowling.check.strike(frame)) {
+  
+        bowling.result += bowling.add.strikeScore(frame, secondFrame, thirdFrame)
+  
+      } else if (bowling.check.spare(frame)) {
+  
+        bowling.result += bowling.add.spareScore(frame, secondFrame)
+  
+      } else {
+  
+        bowling.result += bowling.add.score(frame)
+  
+      }
     }
   }
-
-  console.log('***********************************')
-  console.log('Great work! Your final score is', bowling.result)
-  console.log('***********************************')
-
-  return bowling.result
 }
 
 
+bowling.score(frames);
 
+console.log('***********************************')
+console.log('Great Work! Your final score is', bowling.result)
+console.log('***********************************')
 
-
-
-
-
-score(frames);
 
 
 

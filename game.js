@@ -9,8 +9,13 @@
 // ]
 //
 //Score 300:
+// var frames = [
+//  [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 10, 10],
+// ]
+
+
 var frames = [
- [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 10, 10],
+  [10, 0], [2, 3], [4, 5], [6, 0], [1, 2], [10, 0], [10, 0], [9, 1], [8, 2], [6, 2, 0]
 ]
 
 
@@ -35,7 +40,7 @@ function score(game) {
 
       result += addFreeball(frame)
 
-    } else if (checkStrike(frame)){
+    } else if (checkStrike(frame, secondFrame, thirdFrame)){
 
       result += addStrikeScore(frame, secondFrame, thirdFrame)
 
@@ -49,7 +54,7 @@ function score(game) {
     
     }
   }
-  console.log('The final result is' , result)
+  console.log('Great work! Your final score is' , result)
   return result
 }
 
@@ -66,7 +71,14 @@ function addStrikeScore(frame, secondFrame, thirdFrame) {
 
   if(checkDoubleStrike(frame, secondFrame, thirdFrame)){
     
-    return frame[0] + frame[1] + secondFrame[0] + secondFrame[1] + thirdFrame[0] + thirdFrame[1]
+    let total = 0
+    
+    total += frame[0] + frame[1]
+
+    if(secondFrame){ total += secondFrame[0] + secondFrame[1] }
+    if(thirdFrame){ total += thirdFrame[0] }
+
+    return total
 
   }
   return frame[0] + frame[1] + secondFrame[0] + secondFrame[1]
@@ -77,7 +89,7 @@ function addFreeball(frame) {
 }
 
 
-// Check if there is a spare - working!
+// Check if there is a spare
 function checkSpare(frame) {
   if(addScore(frame) === 10 && frame[0] !== 10){
     return true
@@ -86,7 +98,7 @@ function checkSpare(frame) {
   }
 }
 
-// Check if there is a strike - working!
+// Check if there is a strike
 function checkStrike(frame) {
   if(frame[0] === 10){
     return true
@@ -104,6 +116,7 @@ function checkDoubleStrike(frame, secondFrame){
   }
 }
 
+// Check to see if the bowler recieved a free ball
 function checkFreeball(frame) {
   if(frame.length === 3){
     return true

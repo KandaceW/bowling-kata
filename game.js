@@ -16,20 +16,25 @@ var frames = [
 function finalScore(frames) {
   checkSpare(frames);
     console.log(frames);
+
   checkThreeStrikes(frames);
     console.log(frames);
+
   checkLastThreeStrikes(frames);
     console.log(frames);
+
   checkStrike(frames);
     console.log(frames);
+
   frameScore(frames);
     console.log(frames);
+    
   return total(frames)
 }
 
 
 
-function frameScore(frames) {
+function frameScore() {
   for (let i = 0; i < frames.length; i++) {
     frames[i] = (frames[i][0] + frames[i][1]);
   }
@@ -37,7 +42,7 @@ function frameScore(frames) {
 
 
 
-function checkSpare(frames) {
+function checkSpare() {
   for (let i = 0; i < frames.length; i++) {
     if (frames[i][0] + frames[i][1] === 10 && frames[i][1] !== 0) {
       frames[i] = (frames[i][0] + frames[i][1] + frames[i+1][0]) + [];
@@ -47,7 +52,8 @@ function checkSpare(frames) {
 }
 
 
-function checkThreeStrikes(frames) {
+
+function checkThreeStrikes() {
   for (let i = 0; i < frames.length; i++) {
     if (frames[i][0] === 10 && frames[i+1] && frames[i+1][0] === 10 && frames[i+2] && frames[i+2][0] === 10) {
       frames[i] = (frames[i][0] + frames[i+1][0] + frames[i+2][0]) + [];
@@ -58,7 +64,7 @@ function checkThreeStrikes(frames) {
 
 
 
-function checkLastThreeStrikes(frames) {
+function checkLastThreeStrikes() {
   for (let i = 0; i < frames.length; i++) {
     if (frames[i][0] === 10 && frames[i][1] === 10 && frames[i][2] === 10) {
       frames[i] = 30 + [];
@@ -68,8 +74,9 @@ function checkLastThreeStrikes(frames) {
 }
 
 
+
 //check here
-function checkStrike(frames) {
+function checkStrike() {
   for (let i = 0; i < frames.length; i++) {
      if (frames[i][0] === 10 && frames[i+1][0] === 10) {
       frames[i] = (frames[i][0] + frames[i+1][0] + frames[i+2][0]) + [];
@@ -84,7 +91,7 @@ function checkStrike(frames) {
 
 
 
-function total(frames) {
+function total() {
   frames.join(' ').split('');
   return frames.map(Number).reduce((a, b) => a + b, 0);
 }

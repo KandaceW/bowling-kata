@@ -1,7 +1,7 @@
 // Score 119:
-// var frames = [
-//   [1, 2], [6, 4], [5, 4], [10, 0], [7, 2], [10, 0], [10, 0], [5, 2], [7, 0], [4, 4]
-// ]
+var frames = [
+  [1, 2], [6, 4], [5, 4], [10, 0], [7, 2], [10, 0], [10, 0], [5, 2], [7, 0], [4, 4]
+]
 //
 // Score 141:
 // var frames = [
@@ -12,3 +12,36 @@
 // var frames = [
 //  [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 10, 10],
 // ]
+
+
+
+function score(game) {
+
+
+  let result = 0;
+
+  
+  for (let i = 0; i < game.length; i++) {
+
+
+    let frame = game[i]
+
+    let scoreOfFrame = addScore(frame)
+
+    result += scoreOfFrame
+
+  }
+
+  console.log('The final result is' , result)
+  return result
+
+  
+}
+
+
+function addScore(frame) {
+  return frame[0] + frame[1]
+}
+
+
+score(frames);

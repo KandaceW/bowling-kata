@@ -1,17 +1,17 @@
 // Score 119:
 // var frames = [
-//   [1, 1], [1, 1], [1, 1], [10, 0], [1, 1], [2, 2], [1, 1], [1, 1], [7,1], [1, 1]
+//   [1, 1], [1, 1], [1, 1], [10, 0], [1, 1], [2, 2], [1, 1], [1, 1], [7, 1], [1, 5, 1]
 // ]
 //
 // Score 141:
-var frames = [
-  [1, 2], [6, 4], [5, 4], [10, 0], [7, 2], [10, 0], [10, 0], [5, 2], [7, 0], [10, 10, 10]
-]
+// var frames = [
+//   [1, 2], [6, 4], [5, 4], [10, 0], [7, 2], [10, 0], [10, 0], [5, 2], [7, 0], [10, 10, 10]
+// ]
 //
 //Score 300:
-// var frames = [
-//  [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 10, 10],
-// ]
+var frames = [
+ [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 10, 10],
+]
 
 
 
@@ -27,11 +27,15 @@ function score(game) {
     let secondFrame = game[i + 1]
     let thirdFrame = game[i + 2]
 
-    console.log('Hi I am the first frame: ' , frame)
-    console.log('Hi I am that frame\'s buddy: ' , secondFrame)
-    console.log('Hi I am that frame\'s second buddy: ' , thirdFrame)
+    // console.log('Hi I am the first frame: ' , frame)
+    // console.log('Hi I am that frame\'s buddy: ' , secondFrame)
+    // console.log('Hi I am that frame\'s second buddy: ' , thirdFrame)
 
-    if(checkStrike(frame)){
+    if (checkFreeball(frame)){
+
+      result += addFreeball(frame)
+
+    } else if (checkStrike(frame)){
 
       result += addStrikeScore(frame, secondFrame, thirdFrame)
 
@@ -44,9 +48,7 @@ function score(game) {
       result += addScore(frame)
     
     }
-
   }
-
   console.log('The final result is' , result)
   return result
 }
@@ -56,18 +58,22 @@ function addScore(frame) {
   return frame[0] + frame[1]
 }
 
-function addStrikeScore(frame, secondFrame, thirdFrame) {
-
-  if(checkDoubleStrike(frame, secondFrame)){
-    return frame[0] + frame[1] + secondFrame[0] + secondFrame[1] + thirdFrame[0] + thirdFrame[1]
-  }
-
-  return frame[0] + frame[1] + secondFrame[0] + secondFrame[1]
-
-}
-
 function addSpareScore(frame, secondFrame) {
   return frame[0] + frame[1] + secondFrame[0]
+}
+
+function addStrikeScore(frame, secondFrame, thirdFrame) {
+
+  if(checkDoubleStrike(frame, secondFrame, thirdFrame)){
+    
+    return frame[0] + frame[1] + secondFrame[0] + secondFrame[1] + thirdFrame[0] + thirdFrame[1]
+
+  }
+  return frame[0] + frame[1] + secondFrame[0] + secondFrame[1]
+}
+
+function addFreeball(frame) {
+  return frame[0] + frame[1] + frame[2]
 }
 
 
@@ -97,6 +103,16 @@ function checkDoubleStrike(frame, secondFrame){
     return false
   }
 }
+
+function checkFreeball(frame) {
+  if(frame.length === 3){
+    return true
+  } else {
+    return false
+  }
+}
+
+
 
 // Call the function
 score(frames);

@@ -1,7 +1,7 @@
 // Score 119:
 // var frames = [[1, 2],  [6, 4],  [5, 4],  [10, 0],  [7, 2], [10, 0],  [10, 0],  [5, 2],  [7, 0], [4, 4]
 // ];
-//
+
 // Score 141:
 // var frames = [
 //   [1, 2], [6, 4], [5, 4], [10, 0], [7, 2], [10, 0], [10, 0], [5, 2], [7, 0], [10, 10, 10]
@@ -15,10 +15,15 @@ var frames = [
 
 function finalScore(frames) {
   checkSpare(frames);
+    console.log(frames);
   checkThreeStrikes(frames);
-  // checkLastThreeStrikes(frames);
+    console.log(frames);
+  checkLastThreeStrikes(frames);
+    console.log(frames);
   checkStrike(frames);
+    console.log(frames);
   frameScore(frames);
+    console.log(frames);
   return total(frames)
 }
 
@@ -63,12 +68,14 @@ function checkLastThreeStrikes(frames) {
 }
 
 
-
+//check here
 function checkStrike(frames) {
   for (let i = 0; i < frames.length; i++) {
-    if (frames[i][0] === 10 && frames[i+1][0] === 10) {
+     if (frames[i][0] === 10 && frames[i+1][0] === 10) {
       frames[i] = (frames[i][0] + frames[i+1][0] + frames[i+2][0]) + [];
-    } else if (frames[i][0] === 10 && frames[+1][0] !== 10) {
+    } else if (frames[i][0] === 10 && frames[i+1] == 30) {
+        frames[i] = 30 + [];
+    } else if (frames[i][0] === 10 && frames[i+1][0] !== 10) {
       frames[i] = (frames[i][0] + frames[i][1]) + (frames[i+1][0] + frames[i+1][1]) + [];
     }
   }
@@ -84,13 +91,13 @@ function total(frames) {
 
 
 
-// console.log(finalScore(frames));
+
+
+console.log(finalScore(frames));
 
 // console.log(checkSpare(frames));
 // console.log(checkThreeStrikes(frames));
 // console.log(checkLastThreeStrikes(frames));
-console.log(checkStrike(frames));
+// console.log(checkStrike(frames));
 // console.log(frameScore(frames))
 // console.log(total(frames));
-
-

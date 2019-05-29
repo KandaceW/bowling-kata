@@ -1,13 +1,3 @@
-// Score 119:
-// var frames = [
-//   [1, 1], [1, 1], [1, 1], [10, 0], [1, 1], [2, 2], [1, 1], [1, 1], [7, 1], [1, 5, 1]
-// ]
-//
-// Score 141:
-// var frames = [
-//   [1, 2], [6, 4], [5, 4], [10, 0], [7, 2], [10, 0], [10, 0], [5, 2], [7, 0], [10, 10, 10]
-// ]
-//
 //Score 300:
 // var frames = [
 //  [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 10, 10],
@@ -17,11 +7,6 @@
 var frames = [
   [10, 0], [2, 3], [4, 5], [6, 0], [1, 2], [10, 0], [10, 0], [9, 0], [8, 2], [10, 2, 0]
 ]
-
-
-
-
-
 
 
 let bowling = {
@@ -145,23 +130,8 @@ let bowling = {
   }
 }
 
-
 bowling.score(frames);
 
 console.log('***********************************')
 console.log('Great Work! Your final score is', bowling.result)
 console.log('***********************************')
-
-
-
-
-
-// REQUIREMENTS
-
-// A strike scores ten points plus the score for the next two balls.
-
-// A spare scores ten points plus the score for the next ball.
-
-// On the tenth frame, if the first two balls contain a strike or make a spare, the player gets a third ball.
-
-// The maximum possible score (a "perfect game" of all strikes) is 300.

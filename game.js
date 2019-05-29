@@ -21,7 +21,7 @@ function gameOne(frames) {
     var ballTwo = currentFrame[1];
   
     if (frames[i][0] === 10 ) { // strike
-
+      strike(i) 
     }
 
     else if ( (frames[i][0] + frames[i][1]) === 10) { // spare 
@@ -34,8 +34,13 @@ function gameOne(frames) {
   console.log(score)
 }
 
+function strike() {
 
-gameOne(frames)
+}
+
+function spare() {
+  
+}
                       
 // console.log(frames);
 // function gameOne(frames) {

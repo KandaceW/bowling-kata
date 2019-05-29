@@ -13,34 +13,31 @@
 //  [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 0], [10, 10, 10],
 // ]
 
-
+// Test Frames
 var frames = [
-  [10, 0], [2, 3], [4, 5], [6, 0], [1, 2], [10, 0], [10, 0], [9, 1], [8, 2], [6, 2, 0]
+  [10, 0], [2, 3], [4, 5], [6, 0], [1, 2], [10, 0], [10, 0], [9, 0], [8, 2], [10, 2, 0]
 ]
 
 
 
 function score(game) {
 
-
   let result = 0;
 
-  
+  // For each ball
   for (let i = 0; i < game.length; i++) {
 
+    // Set frames
     let frame = game[i]
     let secondFrame = game[i + 1]
     let thirdFrame = game[i + 2]
 
-    // console.log('Hi I am the first frame: ' , frame)
-    // console.log('Hi I am that frame\'s buddy: ' , secondFrame)
-    // console.log('Hi I am that frame\'s second buddy: ' , thirdFrame)
-
+    // Check for success
     if (checkFreeball(frame)){
 
       result += addFreeball(frame)
 
-    } else if (checkStrike(frame, secondFrame, thirdFrame)){
+    } else if (checkStrike(frame)){
 
       result += addStrikeScore(frame, secondFrame, thirdFrame)
 
@@ -54,7 +51,11 @@ function score(game) {
     
     }
   }
+
+  console.log('***********************************')
   console.log('Great work! Your final score is' , result)
+  console.log('***********************************')
+
   return result
 }
 
@@ -69,7 +70,7 @@ function addSpareScore(frame, secondFrame) {
 
 function addStrikeScore(frame, secondFrame, thirdFrame) {
 
-  if(checkDoubleStrike(frame, secondFrame, thirdFrame)){
+  if(checkDoubleStrike(frame, secondFrame)){
     
     let total = 0
     
@@ -81,6 +82,7 @@ function addStrikeScore(frame, secondFrame, thirdFrame) {
     return total
 
   }
+
   return frame[0] + frame[1] + secondFrame[0] + secondFrame[1]
 }
 
@@ -89,7 +91,6 @@ function addFreeball(frame) {
 }
 
 
-// Check if there is a spare
 function checkSpare(frame) {
   if(addScore(frame) === 10 && frame[0] !== 10){
     return true
@@ -98,7 +99,7 @@ function checkSpare(frame) {
   }
 }
 
-// Check if there is a strike
+
 function checkStrike(frame) {
   if(frame[0] === 10){
     return true
@@ -107,7 +108,7 @@ function checkStrike(frame) {
   }
 }
 
-// Check if there is a double strike
+
 function checkDoubleStrike(frame, secondFrame){
   if(frame[0] === 10 && secondFrame[0] === 10){
     return true
@@ -116,7 +117,7 @@ function checkDoubleStrike(frame, secondFrame){
   }
 }
 
-// Check to see if the bowler recieved a free ball
+
 function checkFreeball(frame) {
   if(frame.length === 3){
     return true
@@ -126,8 +127,6 @@ function checkFreeball(frame) {
 }
 
 
-
-// Call the function
 score(frames);
 
 
